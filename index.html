@@ -253,6 +253,125 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/22/orange-theory-starts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeremy Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jing's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/22/orange-theory-starts/" itemprop="url">orange theory starts</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-22T08:40:29-07:00">
+                2018-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/build_blog_using_hexo_on_github_pages/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -382,6 +501,7 @@
 </ul>
 <p>由于我现在已经创建好了blog dir，我相当于是要把这个existing的folder变成<code>username.github.io</code>这个repo的hexo分支</p>
 <p>在github上的该repo下创建一个分支hexo</p>
+<p><img src="../images/create_branch.png" alt="Alt text"></p>
 <p>把这个分支hexo而不是默认的master给下载下来</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone -b hexo  https://github.com/username/username.github.io.git aaaa</span><br></pre></td></tr></table></figure>
 <p>aaaa是为了不跟username.github.io冲突的名字而已，反正用完之后会删掉，起什么名字都无所谓</p>
@@ -496,7 +616,9 @@
 <p>如果您有过使用WordPress的经验，就很容易误解Hexo的分类方式。WordPress支持对一篇文章设置多个分类，而且这些分类可以是同级的，也可以是父子分类。<strong>但是Hexo不支持指定多个同级分类。下面的指定方法：</strong><br>categories:<br>- Diary<br>- Life<br>会使分类<code>Life</code>成为<code>Diary</code>的子分类，而不是并列分类。<strong>因此，有必要为您的文章选择尽可能准确的分类</strong>。</p>
 </blockquote>
 <h3 id="hexo标签"><a href="#hexo标签" class="headerlink" title="hexo标签"></a>hexo标签</h3><p>标签插件（Tag Plugins）是hexo自己的liquid in markdown，用于在文章中快速插入特定内容的插件</p>
-<p><strong>【注意】在markdown 中添加太多的hexo 标签，其实会在以后用其他编辑器预览，查看，迁移时留下诸多不变，毕竟，私有的语法意味着不兼容。不建议使用！</strong></p>
+<blockquote>
+<p>【注意】在markdown 中添加太多的hexo 标签，其实会在以后用其他编辑器预览，查看，迁移时留下诸多不变，毕竟，私有的语法意味着不兼容。不建议使用！</p>
+</blockquote>
 <h3 id="资源文件夹"><a href="#资源文件夹" class="headerlink" title="资源文件夹"></a>资源文件夹</h3><p>资源（Asset）代表 <code>source</code> 文件夹中除了文章以外的所有文件，例如图片、CSS、JS 文件等</p>
 <p>如果你的Hexo项目中只有少量图片，那最简单的方法就是将它们放在 <code>source/images</code> 文件夹中。然后通过类似于 <code>![](/images/image.jpg)</code> 的方法访问它们。</p>
 <p>如果有大量的图片，则最好使用图床，<a href="https://jiantuku.com/#/" target="_blank" rel="noopener">极简图床 + chrome 插件 + 七牛空间</a>，七牛云储存提供10G的免费空间,以及每月10G的流量，存放个人博客外链图片最好不过了，七牛云储存还有各种图形处理功能、缩略图、视频存放速度也给力。</p>
@@ -581,7 +703,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-21T11:05:39-07:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-21T00:00:00-07:00">
                 2018-04-21
               </time>
             
@@ -711,7 +833,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
