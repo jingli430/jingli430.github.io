@@ -1,6 +1,7 @@
 ---
 title: 用github+hexo搭建blog
 date: 2018-04-21 11:29:33
+Mathjax: true
 categories: [blogging]
 tags: [test, hello, world]
 ---
@@ -168,7 +169,13 @@ github上的东西并不是blog dir里面的内容，而只是`blog_dir/.deploy_
 
 在github上的该repo下创建一个分支hexo
 
-![Alt text](../images/create_branch.png)
+![Alt text](/images/create_branch.png)
+
+在本地显示不出来，但是在blog上能显示出来！【非常奇怪】
+
+
+
+
 
 把这个分支hexo而不是默认的master给下载下来
 
@@ -211,7 +218,7 @@ git push origin hexo
 
 #### 更改主题
 
-从[hexo themes](https://hexo.io/themes/)找到何意的主题，clone下来，放到站点本地仓库的`themes`目录下，比如我现在想添加主题next，在blog dir下执行
+从[hexo themes](https://hexo.io/themes/)找到合意的主题，clone下来，放到站点本地仓库的`themes`目录下，比如我现在想添加主题next，在blog dir下执行
 
 ```
 git clone https://github.com/iissnan/hexo-theme-next themes/next
@@ -318,7 +325,7 @@ duoshuo倒闭了，[Gitment](https://github.com/imsun/gitment) 是基于 GitHub 
 
 对于hexo+Github搭建的博客，使用Gitment应该是最好的选择了，因为他是基于Github的Issue来做的，每篇文章的评论会创建一个Issue。尽管还有类似的开源项目，比如Gittalk也可以实现同样的功能，由于我使用的是next主题，所以Gitment的默认样式可能更适合我的博客，虽然样式是可以自定义的，但是对于我这种不会前端的人来说怎么简单怎么来吧。
 
-
+具体操作看[这里](http://fanzhenyu.me/2017/12/03/Github-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%94%EF%BC%89/), [这里](https://imsun.net/posts/gitment-introduction/)
 
 
 
@@ -409,7 +416,69 @@ auto_excerpt:
 
 #### 图片
 
-Markdown编辑器支持插入图片，可以直接给出图片的链接，因此我们可以将图片存放在我们hexo项目的目录下，再填写对应的路径，也可以将其存放在云服务器上，然后给出链接。
+**图片存储**
+
+* 方法1：使用七牛云进行图片存储
+* 方法2：使用hexo github仓库进行图片存储
+  * 在hexo/source目录下新建一个img文件夹，将图片放入该文件夹下，插入图片时链接即为`/img/图片名称`。这样做也存在一定的缺点，因为Github仓库的的大小也是受限的，所以图片太多就比较麻烦了，所以还是建议用图床等其他云存储方式。
+
+**优雅的在博客上插入图片：资源文件夹**
+
+资源（Asset）代表 `source` 文件夹中除了文章以外的所有文件，例如图片、CSS、JS 文件等. 比方说，如果你的Hexo项目中只有少量图片，那最简单的方法就是将它们放在 `source/images` 文件夹中。然后通过类似于 `![](/images/image.jpg)` 的方法访问它们。
+
+首先确认全局`_config.yml`中更改
+
+```
+_config.yml
+post_asset_folder: true
+```
+
+当资源文件管理功能打开后，Hexo将会在你每一次通过 `hexo new [layout] <title>` 命令创建新文章时自动创建一个文件夹。这个资源文件夹将会有与这个 markdown 文件一样的名字。将所有与你的文章有关的资源放在这个关联文件夹中之后，你可以通过相对路径来引用它们，这样你就得到了一个更简单而且方便得多的工作流。
+
+**安装hexo-asset-image插件**
+
+你需要安装一个图片路径转换的插件，这个插件名字是**hexo-asset-image**，我目前安装的是最新的0.03版本，使用如下命令安装插件
+
+```
+npm install https://github.com/CodeFalling/hexo-asset-image –save
+```
+
+图片的插入和显示方式**
+
+**方法1**：本地图片测试
+
+![](2018-04-21-build_blog_using_hexo_on_github_pages/create_branch.png)
+
+并没有成功使用`![](create_branch.png)`这样的路径，而是必须把相对路径写正确`![](2018-04-21-build_blog_using_hexo_on_github_pages/create_branch.png)`才能即在编写时看见图片也能在发布后看见图片
+
+**方法2**： `post_asset_folder: true`设置后使用标签插件来显示图片
+
+通过常规的 markdown 语法和相对路径来引用图片和其它资源可能会导致它们在存档页或者主页上显示不正确。在Hexo 2时代，社区创建了很多插件来解决这个问题。但是，随着Hexo 3 的发布，许多新的标签插件被加入到了核心代码中。这使得你可以更简单地在文章中引用你的资源。
+
+比如说：当你打开文章资源文件夹功能后，你把一个 `example.jpg` 图片放在了你的资源文件夹中，如果通过使用相对路径的常规 markdown 语法 `![](/example.jpg)` ，它将*不会*出现在首页上。（但是它会在文章中按你期待的方式工作）
+
+正确的引用图片方式是使用下列的标签插件而不是 markdown ：
+
+```
+{% asset_img create_branch.jpg This is an example image %}
+```
+
+通过这种方式，图片将会同时出现在文章和主页以及归档页中。
+
+{% asset_img create_branch.png this is a test %}
+
+> 这种奇怪的方式我不明白为什么会被官方采纳，因为它最大的弱点在于，在编写文章时，你看到的是一行标签代码，而不能显示图片，也就是使用markdown编辑器进行文章编写时，不能可见即所得。
+
+**方法3**： 直接用html来显示图片
+
+`<img src="" alt="logo">`
+
+同样的该图片无法在编写文章时看见，而且还占据了整整一行的空间，编写的时候造成文章格式非常难看
+
+**什么时候需要图床**
+
+* 如果你的Hexo项目中只有少量图片，那最简单的方法就是将它们放在 `source/images` 文件夹中。然后通过类似于 `![](/images/image.jpg)` 的方法访问它们。
+  * 如果有大量的图片，则最好使用图床，[极简图床 + chrome 插件 + 七牛空间](https://jiantuku.com/#/)，七牛云储存提供10G的免费空间,以及每月10G的流量，存放个人博客外链图片最好不过了，七牛云储存还有各种图形处理功能、缩略图、视频存放速度也给力。
 
 **修改如图所示的网站 icon：**
 
@@ -434,18 +503,6 @@ Markdown编辑器支持插入图片，可以直接给出图片的链接，因此
 对博客中的所有图片进行压缩：
 
 看看压缩结果，最高的一张压缩了78.7%，这简直是太可怕了！
-
-**资源文件夹**
-
-资源（Asset）代表 `source` 文件夹中除了文章以外的所有文件，例如图片、CSS、JS 文件等
-
-如果你的Hexo项目中只有少量图片，那最简单的方法就是将它们放在 `source/images` 文件夹中。然后通过类似于 `![](/images/image.jpg)` 的方法访问它们。
-
-如果有大量的图片，则最好使用图床，[极简图床 + chrome 插件 + 七牛空间](https://jiantuku.com/#/)，七牛云储存提供10G的免费空间,以及每月10G的流量，存放个人博客外链图片最好不过了，七牛云储存还有各种图形处理功能、缩略图、视频存放速度也给力。
-
-```
-hexo new [layout] '博文标题'
-```
 
 #### 开启打赏功能
 
@@ -517,23 +574,30 @@ mathjax: true
 --
 ```
 
+每篇文章都要，所以还不如添加到模板中，打开scaffolds/post.md
+
+```
+---
+title: {{ title }}
+date: {{ date }}
+mathjax: true
+tags:
+---
+```
+
+看下效果如何
+
+$x_i$
 
 
 
-
-
+## MISC
 
 #### hexo标签
 
 标签插件（Tag Plugins）是hexo自己的liquid in markdown，用于在文章中快速插入特定内容的插件
 
 > 【注意】在markdown 中添加太多的hexo 标签，其实会在以后用其他编辑器预览，查看，迁移时留下诸多不变，毕竟，私有的语法意味着不兼容。不建议使用！
-
-## 问题
-
-Page是用来干什么的？
-
-怎样使用插件
 
 #### hexo的适用场景
 
@@ -558,3 +622,50 @@ alipay: 支付宝当面付图片的url
 [![image](http://ohe7ixo05.bkt.clouddn.com/2016/12/5-13.png)](http://ohe7ixo05.bkt.clouddn.com/2016/12/5-13.png)
 
 Github pages + Hexo搭建静态博客站点的系列文章到这里就完结了，其实也算是一个很详细的教程了，花了一些时间来整理。之后可能不会再更新，但是，如果之后遇到一些问题或者有更好的推荐，可能还会再写。
+
+#### 插入音乐
+
+　　网音乐云音乐，虾米音乐都可以生成内嵌音乐的html代码，在其网页端找到喜欢的歌曲，点击分享按钮，把里面的代码复制下来，直接粘贴到博文中即可:
+
+```
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86   
+    src="http://music.163.com/outchain/player?type=2&id=450853439&auto=1&height=66">  
+</iframe>
+```
+
+#### 插入视频
+
+　　将优酷等视频平台提供的视频外链或者自己制作的视频外链替换掉如下src的值即可。
+
+```
+<iframe   
+    height=498 width=510   
+    src="http://player.youku.com/embed/XNjcyMDU4Njg0"   
+    frameborder=0 allowfullscreen>  
+</iframe>
+```
+
+#### 友情链接
+
+```
+blogrolls: #友情链接
+  - bruce sha's duapp wordpress: http://ibruce.duapp.com
+  - bruce sha's javaeye: http://buru.iteye.com
+  - bruce sha's oschina blog: http://my.oschina.net/buru
+  - bruce sha's baidu space: http://hi.baidu.com/iburu
+```
+
+#### 制作ICO图标
+
+favicon.ico一般用于作为缩略图的网站标志，[在线制作网站](http://www.bitbug.net/)
+
+
+
+
+
+##### Hexo环境
+
+Hexo环境的搭建看过不少文章，但对我而言是极其繁琐和陌生的，而我的目的主要在于利用它来写博客，我在意的是我博客的内容而不是搭建博客自身的过程，因此我是直接使用了[Hexo懒人携带版 / PortableHexo](http://etrd.org/2017/01/23/hexo%E4%B8%AD%E5%AE%8C%E7%BE%8E%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/Hexo%E6%87%92%E4%BA%BA%E6%90%BA%E5%B8%A6%E7%89%88%20/%20PortableHexo)，它的优势是，纯傻瓜式操作，无法安装hexo git nodejs等环境，压缩包解压直接用，直接发布，十分感谢这个懒人包团队的工作。该懒人包内相关软件的版本如下
+
+
+
