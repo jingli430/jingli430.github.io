@@ -169,7 +169,7 @@ github上的东西并不是blog dir里面的内容，而只是`blog_dir/.deploy_
 
 在github上的该repo下创建一个分支hexo
 
-![Alt text](/images/create_branch.png)
+![Alt text](../img/create_branch.png)
 
 在本地显示不出来，但是在blog上能显示出来！【非常奇怪】
 
