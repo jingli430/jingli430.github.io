@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/12/2-2.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2352140-67c6e1edb5695035.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/630">
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/12/5-13.png">
-<meta property="og:updated_time" content="2018-04-22T22:45:52.000Z">
+<meta property="og:updated_time" content="2018-04-22T22:53:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用github+hexo搭建blog">
 <meta name="twitter:description" content="资源 hexo官网  搭建1. 配置站点一般hexo初始化后的站点目录结构如下 12345678910111213/blog |-- _config.yml # 站点配置文件 |-- scaffolds   # 页面模板存放的目录 |      |-- post.html # 博文模板 |      |-- page.html # 分页模板 |      \-- draft.html # 草稿模板">
@@ -242,16 +242,6 @@
               <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
             
             站点地图
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
           </a>
         </li>
       
@@ -565,6 +555,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># MathJax Support</span><br><span class="line">mathjax:</span><br><span class="line">  enable: true</span><br><span class="line">  per_page: true</span><br></pre></td></tr></table></figure>
 <p>此外，还需要在文章的Front-matter里打开mathjax开关，如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: index.html</span><br><span class="line">date: 2017-03-28 21:01:30</span><br><span class="line">tags:</span><br><span class="line">mathjax: true</span><br><span class="line">--</span><br></pre></td></tr></table></figure>
+<p>每篇文章都要，所以还不如添加到模板中，打开scaffolds/post.md</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">mathjax: true</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>看下效果如何</p>
+<p>$x_i$</p>
 <h4 id="hexo标签"><a href="#hexo标签" class="headerlink" title="hexo标签"></a>hexo标签</h4><p>标签插件（Tag Plugins）是hexo自己的liquid in markdown，用于在文章中快速插入特定内容的插件</p>
 <blockquote>
 <p>【注意】在markdown 中添加太多的hexo 标签，其实会在以后用其他编辑器预览，查看，迁移时留下诸多不变，毕竟，私有的语法意味着不兼容。不建议使用！</p>
@@ -1301,6 +1295,8 @@
   
 
   
+  
+
 
   
 
