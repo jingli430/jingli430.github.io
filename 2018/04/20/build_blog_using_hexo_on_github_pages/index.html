@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/12/2-2.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2352140-67c6e1edb5695035.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/630">
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/12/5-13.png">
-<meta property="og:updated_time" content="2018-04-22T22:53:09.000Z">
+<meta property="og:updated_time" content="2018-04-22T22:57:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用github+hexo搭建blog">
 <meta name="twitter:description" content="资源 hexo官网  搭建1. 配置站点一般hexo初始化后的站点目录结构如下 12345678910111213/blog |-- _config.yml # 站点配置文件 |-- scaffolds   # 页面模板存放的目录 |      |-- post.html # 博文模板 |      |-- page.html # 分页模板 |      \-- draft.html # 草稿模板">
@@ -467,7 +467,7 @@
 <blockquote>
 <p>如果你现在的blog dir是崭新的，你不妨在创建username.github.io这个repo的时候就先创建hexo分支，这样就不需要这样繁琐的补救措施</p>
 </blockquote>
-<h2 id="全局配置-config-xml"><a href="#全局配置-config-xml" class="headerlink" title="全局配置_config.xml"></a>全局配置<code>_config.xml</code></h2><h4 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h4><p>从<a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo themes</a>找到何意的主题，clone下来，放到站点本地仓库的<code>themes</code>目录下，比如我现在想添加主题next，在blog dir下执行</p>
+<h2 id="全局配置-config-xml"><a href="#全局配置-config-xml" class="headerlink" title="全局配置_config.xml"></a>全局配置<code>_config.xml</code></h2><h4 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h4><p>从<a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo themes</a>找到合意的主题，clone下来，放到站点本地仓库的<code>themes</code>目录下，比如我现在想添加主题next，在blog dir下执行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 <p>再修改blog<code>_config.yml</code>文件的<code>theme</code>字段为对应的主题名</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
@@ -558,7 +558,7 @@
 <p>每篇文章都要，所以还不如添加到模板中，打开scaffolds/post.md</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">mathjax: true</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 <p>看下效果如何</p>
-<p>$x_i$</p>
+<p>$$x_i$$</p>
 <h4 id="hexo标签"><a href="#hexo标签" class="headerlink" title="hexo标签"></a>hexo标签</h4><p>标签插件（Tag Plugins）是hexo自己的liquid in markdown，用于在文章中快速插入特定内容的插件</p>
 <blockquote>
 <p>【注意】在markdown 中添加太多的hexo 标签，其实会在以后用其他编辑器预览，查看，迁移时留下诸多不变，毕竟，私有的语法意味着不兼容。不建议使用！</p>
