@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[asdfasdfas]]></title>
     <url>%2F2018%2F04%2F22%2Fasdfasdfas%2F</url>
-    <content type="text"><![CDATA[![logo](asdfasdfas/create_branch.png)]]></content>
+    <content type="text"><![CDATA[方法1：本地图片测试 方法2： post_asset_folder: true设置后的liquid图片显示 方法3： 直接用html来图片显示]]></content>
   </entry>
   <entry>
     <title><![CDATA[orange theory starts today!]]></title>
