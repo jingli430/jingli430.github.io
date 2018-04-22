@@ -5,15 +5,15 @@
 # Site
 title: Jing's Blog
 subtitle: just be in the moment
-description: coder and editor
-keywords: code edit
-author: Jeremy Lee
-language:
-timezone:
+description: life is a checklist
+keywords: "code, edit"
+author: Jing
+language: zh-Hans
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://jingli430.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -29,7 +29,7 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :title.md # File name of new posts
+new_post_name: :year-:month-:day-:title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
@@ -74,6 +74,11 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
+Plugins:
+- hexo-generator-sitemap
+#sitemap
+sitemap:
+  path: sitemap.xml
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -81,3 +86,18 @@ deploy:
   type: git
   repo: https://github.com/jingli430/jingli430.github.io.git
   branch: master
+
+# local search
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
+# backup to different branches
+backup:
+  type: git  # 指定提交类型
+  message: backup   # 添加git commit信息
+  repository: jingli43.github.io   # 指定仓库类型和地址
+  github: git@github.com:jingli430/jingli430.github.io.git,backup
+
