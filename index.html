@@ -191,6 +191,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -359,7 +379,7 @@
 <p>github上的东西并不是blog dir里面的内容，而只是<code>blog_dir/.deploy_git</code> 的内容，要想在别的机器上也创造一个可以更新博客的站点，你必须把完整的blog dir拷贝到另外一台机器上</p>
 <ul>
 <li>方法一：把blog dir放置在google drive里面，然后在新机器上就把google drive的blog dir拷贝过去，并安装node, git, hexo即可</li>
-<li>方法二：把这个blog dir放在<code>username.github.io</code>这个repo的另外一个分支下，相当于是用github代替了google drive来保存blog dir的内容，而且它存放在同一个repo的不同分支上，相当于关联起来了，方便操作</li>
+<li>方法二：把这个blog dir放在<code>username.github.io</code>repo的另外一个分支下，相当于是用github代替了google drive来保存blog dir，而且它存放在同一个repo的上，方便管理和维护。</li>
 </ul>
 <p>由于我现在已经创建好了blog dir，我相当于是要把这个existing的folder变成<code>username.github.io</code>这个repo的hexo分支</p>
 <p>在github上的该repo下创建一个分支hexo</p>
@@ -373,8 +393,19 @@
 <ul>
 <li><code>db.json</code>是缓存文件</li>
 </ul>
-<p>添加所有untracked和unstaged文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b hexo   # 比如说创建一个叫hexo的分支</span><br></pre></td></tr></table></figure>
+<p>添加所有untracked和unstaged文件，然后push到远端的hexo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin hexo</span><br></pre></td></tr></table></figure>
+<p>至此</p>
+<ul>
+<li>blog dir驻守username.github.io的hexo分支，用git来管理和更新<ul>
+<li>hexo分支在这里就是github本身提倡的<code>gh-pages</code>分支，即用来存放生成站点的source分支</li>
+</ul>
+</li>
+<li>blog本身的内容(<code>deploy_git</code>)驻守username.github.io的master分支，用hexo来管理和更新</li>
+</ul>
+<blockquote>
+<p>如果你现在的blog dir是崭新的，你不妨在创建username.github.io这个repo的时候就先创建hexo分支，这样就不需要这样繁琐的补救措施</p>
+</blockquote>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="常用hexo命令"><a href="#常用hexo命令" class="headerlink" title="常用hexo命令"></a>常用hexo命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;站点仓库的目录&gt; # 初始化一个站点目录</span><br><span class="line">hexo clean # 用于主题切换等涉及站点整体布局效果改变的行为时，清楚hexo原有缓存</span><br><span class="line">hexo new &apos;博文标题&apos; # 新增一篇博文</span><br><span class="line">hexo generate # 可简写为 hexo g ，编译生成静态页面文件</span><br><span class="line">hexo server # 可简写为 hexo s ，开启本地服务器预览与测试编译生成的静态页面效果</span><br><span class="line">hexo delpoy # 可简写为 hexo d ，部署站点到远程仓库</span><br><span class="line">hexo generate -d # 可简写为 hexo g -d ，编译生成静态页面文件并部署到远程仓库</span><br><span class="line">hexo deploy -g # 可简写为 hexo d -g ，同上</span><br></pre></td></tr></table></figure>
 <h3 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h3><p>从<a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo themes</a>找到何意的主题，clone下来，放到站点本地仓库的<code>themes</code>目录下，</p>
 <p>比如我现在想添加主题next，我就在blog dir下</p>
@@ -399,8 +430,12 @@
 <ul>
 <li>通过 Hexo 你可以轻松地使用 Markdown 编写文章，非常符合我的口味。Markdown 真的是专门针对程序员开发的语言啊，现在感觉没有 Markdown什么都不想写。什么富文本编辑器，什么word，太麻烦了！而且样式都好丑！效率太低！</li>
 </ul>
-<h2 id="Hexo的配置"><a href="#Hexo的配置" class="headerlink" title="Hexo的配置"></a>Hexo的配置</h2><h3 id="目录是可以改的"><a href="#目录是可以改的" class="headerlink" title="目录是可以改的"></a>目录是可以改的</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Directory</span><br><span class="line">source_dir: source</span><br><span class="line">public_dir: public</span><br><span class="line">tag_dir: tags</span><br><span class="line">archive_dir: archives</span><br><span class="line">category_dir: categories</span><br><span class="line">code_dir: downloads/code</span><br><span class="line">i18n_dir: :lang</span><br><span class="line">skip_render:</span><br></pre></td></tr></table></figure>
-<h3 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a>Front-matter</h3><p>是文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p>
+<h2 id="Hexo的配置"><a href="#Hexo的配置" class="headerlink" title="Hexo的配置"></a>Hexo的配置</h2><h3 id="Menu-Settings"><a href="#Menu-Settings" class="headerlink" title="Menu Settings"></a>Menu Settings</h3><p>新建tags, catagories页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page tags   # 会在source/下生成tags/index.md文件</span><br><span class="line">$ hexo new page categories   # 会在source/下生成categories/index.md文件</span><br></pre></td></tr></table></figure>
+<p>确认主题配置文件有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim current_theme/_config.xml</span><br><span class="line">tags: tags</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir source/dags</span><br><span class="line">mkdir source/archives</span><br></pre></td></tr></table></figure>
+<h3 id="加about页面"><a href="#加about页面" class="headerlink" title="加about页面"></a>加about页面</h3><h3 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a>Front-matter</h3><p>是文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 <p>以下是预先定义的参数，您可在模板中使用这些参数值并加以利用。</p>
 <table>
@@ -466,6 +501,7 @@
 <h3 id="资源文件夹"><a href="#资源文件夹" class="headerlink" title="资源文件夹"></a>资源文件夹</h3><p>资源（Asset）代表 <code>source</code> 文件夹中除了文章以外的所有文件，例如图片、CSS、JS 文件等</p>
 <p>如果你的Hexo项目中只有少量图片，那最简单的方法就是将它们放在 <code>source/images</code> 文件夹中。然后通过类似于 <code>![](/images/image.jpg)</code> 的方法访问它们。</p>
 <p>如果有大量的图片，则最好使用图床，<a href="https://jiantuku.com/#/" target="_blank" rel="noopener">极简图床 + chrome 插件 + 七牛空间</a>，七牛云储存提供10G的免费空间,以及每月10G的流量，存放个人博客外链图片最好不过了，七牛云储存还有各种图形处理功能、缩略图、视频存放速度也给力。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &apos;博文标题&apos;</span><br></pre></td></tr></table></figure>
 <h3 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># Writing</span><br><span class="line">new_post_name: :title.md # File name of new posts</span><br><span class="line">default_layout: post</span><br><span class="line">titlecase: false # Transform title into titlecase</span><br><span class="line">external_link: true # Open external links in new tab</span><br><span class="line">filename_case: 0</span><br><span class="line">render_drafts: false</span><br><span class="line">post_asset_folder: false</span><br><span class="line">relative_link: false</span><br><span class="line">future: true</span><br><span class="line">highlight:</span><br><span class="line">  enable: true</span><br><span class="line">  line_number: true</span><br><span class="line">  auto_detect: false</span><br><span class="line">  tab_replace:</span><br></pre></td></tr></table></figure>
 
           
@@ -1116,10 +1152,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
-                
+                </a>
               </div>
             
 
@@ -1127,10 +1163,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
