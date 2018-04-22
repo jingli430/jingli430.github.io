@@ -1,13 +1,9 @@
 ---
-title: test
+title: 用github+hexo搭建blog
 date: 2018-04-21 11:29:33
 categories: [blogging]
 tags: [test, hello, world]
 ---
-
-
-
-[TOC]
 
 ## 资源
 
@@ -73,6 +69,10 @@ tags:
 - tag2
 comments: true
 ```
+
+
+
+
 
 ### 3. 更新 & 部署站点到Github Pages
 
@@ -158,7 +158,7 @@ drwxr-xr-x   5 jing.li  staff    170 Apr 21 16:49 tags
 github上的东西并不是blog dir里面的内容，而只是`blog_dir/.deploy_git` 的内容，要想在别的机器上也创造一个可以更新博客的站点，你必须把完整的blog dir拷贝到另外一台机器上
 
 * 方法一：把blog dir放置在google drive里面，然后在新机器上就把google drive的blog dir拷贝过去，并安装node, git, hexo即可
-* 方法二：把这个blog dir放在`username.github.io`这个repo的另外一个分支下，相当于是用github代替了google drive来保存blog dir的内容，而且它存放在同一个repo的不同分支上，相当于关联起来了，方便操作
+* 方法二：把这个blog dir放在`username.github.io`repo的另外一个分支下，相当于是用github代替了google drive来保存blog dir，而且它存放在同一个repo的上，方便管理和维护。
 
 由于我现在已经创建好了blog dir，我相当于是要把这个existing的folder变成`username.github.io`这个repo的hexo分支
 
@@ -183,19 +183,23 @@ cd aaaa
 mv .git ../username.github.io
 ```
 
-添加`public` 和`.deploy_git` 到`.gitignore`
+添加`db.json` ， `public` ，`.deploy_git` 到`.gitignore`
 
-添加所有untracked和unstaged文件
+* `db.json`是缓存文件
 
-
-
-
+添加所有untracked和unstaged文件，然后push到远端的hexo
 
 ```
-git checkout -b hexo   # 比如说创建一个叫hexo的分支
+git push origin hexo
 ```
 
+至此
 
+* blog dir驻守username.github.io的hexo分支，用git来管理和更新
+  * hexo分支在这里就是github本身提倡的`gh-pages`分支，即用来存放生成站点的source分支
+* blog本身的内容(`deploy_git`)驻守username.github.io的master分支，用hexo来管理和更新
+
+> 如果你现在的blog dir是崭新的，你不妨在创建username.github.io这个repo的时候就先创建hexo分支，这样就不需要这样繁琐的补救措施
 
 
 
@@ -297,19 +301,36 @@ hexo d -g
 
 ## Hexo的配置
 
-### 目录是可以改的
+### Menu Settings
+
+新建tags, catagories页面
 
 ```
-# Directory
-source_dir: source
-public_dir: public
-tag_dir: tags
-archive_dir: archives
-category_dir: categories
-code_dir: downloads/code
-i18n_dir: :lang
-skip_render:
+$ hexo new page tags   # 会在source/下生成tags/index.md文件
+$ hexo new page categories   # 会在source/下生成categories/index.md文件
 ```
+
+确认主题配置文件有
+
+```
+vim current_theme/_config.xml
+tags: tags
+```
+
+
+
+```
+mkdir source/dags
+mkdir source/archives
+```
+
+### 加about页面
+
+
+
+
+
+
 
 ### Front-matter 
 
@@ -352,6 +373,14 @@ tags:
 > \- Life
 > 会使分类`Life`成为`Diary`的子分类，而不是并列分类。**因此，有必要为您的文章选择尽可能准确的分类**。
 
+
+
+
+
+
+
+
+
 ### hexo标签
 
 标签插件（Tag Plugins）是hexo自己的liquid in markdown，用于在文章中快速插入特定内容的插件
@@ -367,6 +396,13 @@ tags:
 如果有大量的图片，则最好使用图床，[极简图床 + chrome 插件 + 七牛空间](https://jiantuku.com/#/)，七牛云储存提供10G的免费空间,以及每月10G的流量，存放个人博客外链图片最好不过了，七牛云储存还有各种图形处理功能、缩略图、视频存放速度也给力。
 
 
+
+
+
+```
+hexo new [layout] '博文标题'
+
+```
 
 
 
